@@ -1,0 +1,27 @@
+{
+  "name": "@synexes/worker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist .turbo node_modules"
+  },
+  "dependencies": {
+    "bullmq": "^5.52.0",
+    "ioredis": "^5.6.0",
+    "@google/generative-ai": "^0.24.0",
+    "pdf-parse": "^1.1.1",
+    "@aws-sdk/client-s3": "^3.800.0",
+    "@synexes/db": "workspace:*",
+    "@synexes/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@synexes/config": "workspace:*",
+    "@types/pdf-parse": "^1.1.4",
+    "typescript": "^5.8.0",
+    "tsx": "^4.19.0"
+  }
+}

@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - '@sentry/cli'
+  - core-js
+  - esbuild
+  - msgpackr-extract
+  - sharp
