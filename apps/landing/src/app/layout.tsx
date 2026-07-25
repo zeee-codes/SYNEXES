@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { SmoothScroller } from "../components/smooth-scroller";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
+  metadataBase: new URL("https://synexes.com"),
   title: "Synexes — Healthcare timeline for chronic care",
   description:
     "Synexes is building a healthcare timeline for chronic care. Join early access and share your needs as a caregiver, patient, clinician, or contributor.",
@@ -30,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-surface-canvas text-text-primary font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen transition-colors duration-300">
         <ThemeProvider
           attribute="data-theme"

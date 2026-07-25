@@ -13,9 +13,9 @@ const AVAILABILITY_OPTIONS = [
 
 export function ContributorIntake() {
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState(ROLE_OPTIONS[0]);
+  const [role, setRole] = useState<string>(ROLE_OPTIONS[0] ?? "Developer");
   const [skills, setSkills] = useState("");
-  const [availability, setAvailability] = useState(AVAILABILITY_OPTIONS[0]);
+  const [availability, setAvailability] = useState<string>(AVAILABILITY_OPTIONS[0] ?? "2-4 hours/week");
   const [motivation, setMotivation] = useState("");
   const [status, setStatus] = useState<{ kind: "idle" | "error" | "success"; message: string }>({
     kind: "idle",
