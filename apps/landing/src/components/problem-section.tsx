@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 import { FolderOpen, History, FileWarning, Users } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,9 +34,10 @@ const PAIN_POINTS = [
 export function ProblemSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!containerRef.current || !cardsRef.current) return;
+    if (!containerRef.current || !cardsRef.current || shouldReduceMotion) return;
 
     gsap.fromTo(cardsRef.current.children, {
       opacity: 0,
@@ -51,18 +53,18 @@ export function ProblemSection() {
         start: "top 75%",
       },
     });
-  }, []);
+  }, [shouldReduceMotion]);
 
   return (
     <section ref={containerRef} className="w-full py-32 px-6 bg-surface-primary relative z-10 border-t border-border-subtle">
       <div className="w-full max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-text-primary tracking-tight mb-6">
-            Healthcare shouldn’t feel <br className="hidden sm:block" />
-            this disorganized.
+            Chronic-care history is often fragmented.
           </h2>
           <p className="text-lg text-text-secondary">
-            The friction of chronic care is the scattered data. When records are dispersed across paper folders and chat threads, caregivers lose time and doctors miss critical context.
+            Medical records are spread across portals, paper, and chat threads. Caregivers spend time reconstructing
+            history, and clinicians often review incomplete context.
           </p>
         </div>
 

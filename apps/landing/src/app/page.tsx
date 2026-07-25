@@ -4,20 +4,34 @@ import { Hero } from "../components/hero";
 import { ProblemSection } from "../components/problem-section";
 import { FeaturesSection } from "../components/features-section";
 import { HowItWorks } from "../components/how-it-works";
-import { DiscoverySurvey } from "../components/discovery-survey";
 import { TrustSection } from "../components/trust-section";
-import { FinalCta } from "../components/final-cta";
+import { DiscoverySurvey } from "../components/discovery-survey";
+import { ContributorIntake } from "../components/contributor-intake";
 import { Footer } from "../components/footer";
 
 export const metadata: Metadata = {
-  title: "Synexes — Your Health. Finally Connected.",
+  title: "Synexes — Healthcare timeline for chronic care",
   description:
-    "Every report, prescription, consultation, and scan—organized into one secure timeline you can search, understand, and share in seconds.",
+    "Synexes is building a healthcare timeline for chronic care so caregivers, patients, and clinicians can review and share complete medical history with context.",
   openGraph: {
-    title: "Synexes — Your Health. Finally Connected.",
+    title: "Synexes — Healthcare timeline for chronic care",
     description:
-      "Every report, prescription, consultation, and scan—organized into one secure timeline.",
+      "Early access and discovery for a healthcare timeline focused on chronic-care coordination.",
     type: "website",
+    images: [
+      {
+        url: "/og/landing-preview.svg",
+        width: 1200,
+        height: 630,
+        alt: "Synexes healthcare timeline for chronic care",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Synexes — Healthcare timeline for chronic care",
+    description: "Secure early access and help shape Synexes during the discovery phase.",
+    images: ["/og/landing-preview.svg"],
   },
 };
 
@@ -28,11 +42,11 @@ export default function Home() {
       <main>
         <Hero />
         <ProblemSection />
-        <FeaturesSection />
         <HowItWorks />
-        <DiscoverySurvey />
+        <FeaturesSection />
         <TrustSection />
-        <FinalCta />
+        <DiscoverySurvey />
+        <ContributorIntake />
       </main>
       <Footer />
     </div>

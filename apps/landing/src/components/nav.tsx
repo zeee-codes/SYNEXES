@@ -31,7 +31,7 @@ export function Nav() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-secondary transition-colors"
+              className="p-2 rounded-full text-text-secondary hover:text-text-primary hover:bg-surface-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
               aria-label="Toggle Theme"
             >
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -39,9 +39,9 @@ export function Nav() {
           )}
           <a 
             href="#survey"
-            className="text-sm font-semibold text-white px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-400 hover:-translate-y-[1px] shadow-[0_2px_4px_rgba(0,0,0,0.15)] transition-all duration-150 active:scale-[0.98]"
+            className="text-sm font-semibold text-white px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-400 hover:-translate-y-[1px] shadow-[0_2px_4px_rgba(0,0,0,0.15)] transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
           >
-            Join Early Access
+            Secure Early Access
           </a>
         </div>
       </div>

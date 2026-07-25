@@ -109,6 +109,7 @@ export function DiscoverySurvey() {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string>("");
 
   const selectedPersona = answers.persona as Persona | undefined;
   const activeQuestions = selectedPersona ? BRANCH_QUESTIONS[selectedPersona] : [];
@@ -121,6 +122,7 @@ export function DiscoverySurvey() {
     setAnswers({ persona: p });
     setQuestionIdx(0);
     setStep("questions");
+    setStatusMessage("");
     console.log("analytics: persona_selected", { persona: p });
   }
 
@@ -136,7 +138,12 @@ export function DiscoverySurvey() {
   }
 
   async function handleSubmitEmail() {
-    if (!email || !email.includes("@")) return;
+    if (!email || !email.includes("@")) {
+      setStatusMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setStatusMessage("");
     setSubmitting(true);
     console.log("analytics: email_submitted", { email });
     console.log("analytics: survey_completed");
@@ -150,6 +157,12 @@ export function DiscoverySurvey() {
     setSubmitting(false);
     if (res.success || (res as any).error?.includes("already on the list")) {
       setStep("complete");
+      setStatusMessage("");
+      return;
+    }
+
+    if (!res.success) {
+      setStatusMessage(res.error);
     }
   }
 
@@ -176,14 +189,16 @@ export function DiscoverySurvey() {
               exit={{ opacity: 0, y: -10 }}
               className="text-center"
             >
-              <h2 className="text-3xl font-bold text-text-primary mb-4">Help build Synexes (30s)</h2>
-              <p className="text-text-secondary mb-8">Your answers directly shape the product. This only takes ~30 seconds and will directly influence what we build next!</p>
+              <h2 className="text-3xl font-bold text-text-primary mb-4">Help shape Synexes</h2>
+              <p className="text-text-secondary mb-8">
+                Tell us how you currently manage chronic-care information. This survey takes about 30 seconds.
+              </p>
               <button
                 onClick={() => {
                   setStep("persona");
                   console.log("analytics: survey_started");
                 }}
-                className="px-8 py-3 rounded-[10px] bg-brand-500 text-white font-semibold hover:bg-brand-400 transition-colors shadow-sm"
+                className="px-8 py-3 rounded-[10px] bg-brand-500 text-white font-semibold hover:bg-brand-400 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
               >
                 Start Survey
               </button>
@@ -248,23 +263,34 @@ export function DiscoverySurvey() {
               animate={{ opacity: 1, y: 0 }}
               className="w-full text-center"
             >
-              <h2 className="text-2xl font-bold text-text-primary mb-4">Want early access? Drop your email.</h2>
-              <p className="text-text-secondary mb-8">No spam, we promise. Just a single email when we launch.</p>
+              <h2 className="text-2xl font-bold text-text-primary mb-4">Secure early access</h2>
+              <p className="text-text-secondary mb-4">
+                Share your email to receive launch updates and early enrollment invites.
+              </p>
+              <p className="text-xs text-text-secondary mb-8">
+                By submitting, you consent to Synexes storing your survey responses and contacting you about early
+                access. We use first-party analytics for product discovery.
+              </p>
               <div className="flex flex-col gap-3 w-full max-w-sm mx-auto">
                 <input
                   type="email"
                   placeholder="name@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 rounded-[10px] bg-surface-raised border border-border-strong text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all"
+                  className="w-full p-3 rounded-[10px] bg-surface-raised border border-border-strong text-text-primary placeholder:text-text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25 focus-visible:border-brand-500 transition-all"
                 />
                 <button
                   onClick={handleSubmitEmail}
                   disabled={submitting}
-                  className="w-full px-6 py-3 rounded-[10px] bg-brand-500 text-white font-semibold hover:bg-brand-400 disabled:opacity-50 transition-colors shadow-sm"
+                  className="w-full px-6 py-3 rounded-[10px] bg-brand-500 text-white font-semibold hover:bg-brand-400 disabled:opacity-50 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
                 >
-                  {submitting ? "Joining..." : "Join Early Access"}
+                  {submitting ? "Submitting..." : "Secure Early Access"}
                 </button>
+                {statusMessage && (
+                  <p role="alert" className="text-sm text-red-500">
+                    {statusMessage}
+                  </p>
+                )}
               </div>
             </motion.div>
           )}
@@ -279,8 +305,8 @@ export function DiscoverySurvey() {
               <div className="w-16 h-16 rounded-full bg-brand-500/10 text-brand-500 mx-auto flex items-center justify-center mb-6">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
-              <h2 className="text-2xl font-bold text-text-primary mb-3">You're on the list.</h2>
-              <p className="text-text-secondary">We'll notify you when your timeline is ready.</p>
+              <h2 className="text-2xl font-bold text-text-primary mb-3">You are on the early access list.</h2>
+              <p className="text-text-secondary">We will email you when enrollment opens.</p>
             </motion.div>
           )}
 

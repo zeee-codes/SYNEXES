@@ -37,3 +37,13 @@ export const waitlistEntries = pgTable("waitlist_entries", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+// ─── Contributor Inquiries ────────────────────────────────────────
+export const contributorInquiries = pgTable("contributor_inquiries", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  role: varchar("role", { length: 100 }).notNull(),
+  skills: text("skills").notNull(),
+  availability: varchar("availability", { length: 120 }).notNull(),
+  motivation: text("motivation"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});

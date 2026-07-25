@@ -11,14 +11,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Synexes — Because Your Health Deserves Better Than Folders",
+  title: "Synexes — Healthcare timeline for chronic care",
   description:
-    "One secure timeline for every report, prescription, scan, and consultation—organized, searchable, and ready whenever you need it.",
+    "Synexes is building a healthcare timeline for chronic care. Join early access and share your needs as a caregiver, patient, clinician, or contributor.",
   openGraph: {
-    title: "Synexes — Because Your Health Deserves Better Than Folders",
-    description:
-      "One secure timeline for every report, prescription, scan, and consultation.",
+    title: "Synexes — Healthcare timeline for chronic care",
+    description: "Early access for caregivers, patients, and clinicians coordinating chronic care.",
     type: "website",
+    images: ["/og/landing-preview.svg"],
   },
 };
 
@@ -44,4 +44,3 @@ export default function RootLayout({
     </html>
   );
 }
-

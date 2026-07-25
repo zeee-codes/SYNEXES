@@ -5,18 +5,18 @@ import { UploadCloud, Layers, Send } from "lucide-react";
 const STEPS = [
   {
     icon: <UploadCloud className="w-8 h-8 text-brand-500" />,
-    title: "1. Upload or import",
-    desc: "Simply upload PDFs or sync your doctor emails.",
+    title: "1. Collect records",
+    desc: "Upload reports, prescriptions, and consultation files from existing sources.",
   },
   {
     icon: <Layers className="w-8 h-8 text-brand-500" />,
-    title: "2. Organize automatically",
-    desc: "AI instantly sorts everything by date and condition.",
+    title: "2. Organize as a timeline",
+    desc: "Synexes arranges events chronologically so history can be reviewed in order.",
   },
   {
     icon: <Send className="w-8 h-8 text-brand-500" />,
-    title: "3. View & share",
-    desc: "Browse the timeline and securely send to any doctor.",
+    title: "3. Share with context",
+    desc: "Send relevant history to clinicians with controlled access and clear provenance.",
   },
 ];
 
@@ -25,7 +25,7 @@ export function HowItWorks() {
     <section id="how-it-works" className="w-full py-32 px-6 bg-surface-primary border-t border-border-subtle">
       <div className="w-full max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-16">
-          How It Works
+          How Synexes works
         </h2>
         
         <div className="flex flex-col md:flex-row items-start justify-between gap-12 relative">

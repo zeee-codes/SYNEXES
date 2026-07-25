@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const TIMELINE_RECORDS = [
   {
     date: "Apr 22, 2025",
-    title: "Eco Cardiogram & Lipid Panel",
+    title: "Echocardiogram & Lipid Panel",
     badge: "Report + Scan",
     doctor: "Dr. A. Sharma (Cardiology)",
   },
@@ -72,9 +72,10 @@ function TimelineMockup() {
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!containerRef.current || !textRef.current) return;
+    if (!containerRef.current || !textRef.current || shouldReduceMotion) return;
     
     // Very subtle fade on scroll
     gsap.to(textRef.current, {
@@ -87,7 +88,7 @@ export function Hero() {
         scrub: true,
       },
     });
-  }, []);
+  }, [shouldReduceMotion]);
 
   return (
     <section ref={containerRef} className="w-full pt-40 pb-24 px-6 relative bg-surface-canvas overflow-hidden flex flex-col items-center text-center">
@@ -96,37 +97,38 @@ export function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl md:text-6xl lg:text-[80px] font-bold text-text-primary tracking-tight leading-[1.1] mb-6"
         >
-          Your Health. <br className="hidden md:block" />
-          <span className="text-brand-500">Finally Connected.</span>
+          The healthcare timeline <br className="hidden md:block" />
+          <span className="text-brand-500">for chronic care.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed mb-10"
         >
-          Every report, prescription, consultation, and scan—organized into one secure timeline you can search, understand, and share in seconds.
+          Synexes helps caregivers, patients, and clinicians keep medical history in one chronological record that can
+          be reviewed and shared with context.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: shouldReduceMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#survey"
-            className="w-full sm:w-auto px-8 py-4 rounded-[10px] bg-brand-500 text-white font-bold text-lg hover:bg-brand-400 hover:-translate-y-[1px] shadow-[0_4px_12px_rgba(58,122,92,0.3)] transition-all duration-150 active:scale-[0.98]"
+            className="w-full sm:w-auto px-8 py-4 rounded-[10px] bg-brand-500 text-white font-bold text-lg hover:bg-brand-400 hover:-translate-y-[1px] shadow-[0_4px_12px_rgba(58,122,92,0.3)] transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
           >
-            Join Early Access
+            Secure Early Access
           </a>
           <a
             href="#how-it-works"
-            className="w-full sm:w-auto px-8 py-4 rounded-[10px] bg-surface-primary border-2 border-border-subtle text-text-primary font-semibold text-lg hover:bg-surface-secondary transition-colors"
+            className="w-full sm:w-auto px-8 py-4 rounded-[10px] bg-surface-primary border-2 border-border-subtle text-text-primary font-semibold text-lg hover:bg-surface-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25"
           >
             See How It Works
           </a>
@@ -136,7 +138,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: shouldReduceMotion ? 0 : 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="w-full z-10"
       >
         <TimelineMockup />

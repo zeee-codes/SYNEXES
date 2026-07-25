@@ -2,6 +2,8 @@ import { LogoWordmark } from "./logos";
 
 const NAV_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
+  { label: "Support", href: "/contact" },
   { label: "Contact", href: "mailto:hello@synexes.com" },
 ];
 
@@ -23,13 +25,17 @@ export function Footer() {
             <a
               key={link.label}
               href={link.href}
-              className="text-text-secondary hover:text-text-primary transition-colors text-sm"
+              className="text-text-secondary hover:text-text-primary transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/25 rounded"
             >
               {link.label}
             </a>
           ))}
         </nav>
       </div>
+      <p className="max-w-7xl mx-auto mt-4 text-xs text-text-secondary text-center md:text-left">
+        Synexes uses first-party analytics to understand onboarding interest. We do not use third-party ad trackers on
+        this landing page.
+      </p>
     </footer>
   );
 }

@@ -3,10 +3,10 @@
 import { CheckCircle2 } from "lucide-react";
 
 const TRUST_POINTS = [
-  "End-to-end encryption of all records",
-  "You choose who sees your data",
-  "HIPAA & ISO-compliant infrastructure",
-  "Zero-knowledge architecture (even we can't read your files)",
+  "Privacy-first product decisions for sensitive health data",
+  "Access is explicit, time-bound, and revocable",
+  "Designed for caregiver, patient, and clinician collaboration",
+  "Current stage: early access and discovery with selected users",
 ];
 
 export function TrustSection() {
@@ -14,7 +14,7 @@ export function TrustSection() {
     <section className="w-full py-24 px-6 bg-surface-primary border-t border-border-subtle">
       <div className="w-full max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-8">
-          Your Data, Your Control.
+          Trust and privacy are core requirements.
         </h2>
         
         <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 sm:gap-8">
